@@ -1,0 +1,60 @@
+language: ruby
+
+rvm:
+  - 2.2
+
+addons:
+  apt:
+    packages:
+      - caca-utils # img2txt
+
+before_install:
+  - 'DIR_CACHE="${HOME}/custom_cache"'
+  - 'REDPEN_URL="https://github.com/redpen-cc/redpen/releases/download"'
+  - 'REDPEN_VERSION="1.10.1"'
+
+install:
+  # auto generate changelog
+  - 'whereis conventional-changelog-cli'
+  # document inspector
+  #  - 'curl --request GET --location --continue-at - --create-dirs --output "${DIR_CACHE}/redpen-${REDPEN_VERSION}.tar.gz" "${REDPEN_URL}/redpen-${REDPEN_VERSION}/redpen-${REDPEN_VERSION}.tar.gz"'
+  #  - 'cd ${DIR_CACHE} && tar xvf "./redpen-${REDPEN_VERSION}.tar.gz" && cd -'
+  #  - 'export PATH="$PATH:${DIR_CACHE}/redpen-distribution-${REDPEN_VERSION}/bin"'
+  #  - 'gem install asciidoctor'
+
+before_script:
+  # CI Event判定
+  - EVENT="other"
+  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]        && [ "${TRAVIS_TAG}" == "" ] && EVENT="pr_created"    || EVENT="${EVENT}"'
+  - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]        && [ "${TRAVIS_TAG}" == "" ] && EVENT="pr_merged"     || EVENT="${EVENT}"'
+  - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]        && [ "${TRAVIS_TAG}" == "" ] && EVENT="master_pushed" || EVENT="${EVENT}"'
+  - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "${TRAVIS_TAG}" ] && [ "${TRAVIS_TAG}" != "" ] && EVENT="tag_pushed"    || EVENT="${EVENT}"'
+  - 'echo "EVENT               = ${EVENT}"'
+  - 'echo "TRAVIS_BRANCH       = ${TRAVIS_BRANCH}"'
+  - 'echo "TRAVIS_PULL_REQUEST = ${TRAVIS_PULL_REQUEST}"'
+  - 'echo "TRAVIS_TAG          = ${TRAVIS_TAG}"'
+
+script:
+#  - '"./build/ci_event/${EVENT}.sh"'
+
+cache:
+  directories:
+    - ${HOME}/.cache
+    - ${DIR_CACHE}
+
+after_success:
+  - 'echo "after_success"'
+  - 'echo "${EVENT} SUCCESS"'
+
+after_failure:
+  - 'echo "after_failure"'
+  - 'echo "${EVENT} FAILURE"'
+
+after_script:
+  - 'echo "after_script"'
+  - 'echo "EVENT               = ${EVENT}"'
+  - 'echo "TRAVIS_BRANCH       = ${TRAVIS_BRANCH}"'
+  - 'echo "TRAVIS_PULL_REQUEST = ${TRAVIS_PULL_REQUEST}"'
+  - 'echo "TRAVIS_TAG          = ${TRAVIS_TAG}"'
+  - 'echo "TRAVIS_TEST_RESULT  = ${TRAVIS_TEST_RESULT}"'
+
