@@ -15,7 +15,7 @@ before_install:
 
 install:
   # auto generate changelog
-  - 'npm -g conventional-changelog-cli'
+  - 'echo npm install -g conventional-changelog-cli'
   # document inspector
   #  - 'curl --request GET --location --continue-at - --create-dirs --output "${DIR_CACHE}/redpen-${REDPEN_VERSION}.tar.gz" "${REDPEN_URL}/redpen-${REDPEN_VERSION}/redpen-${REDPEN_VERSION}.tar.gz"'
   #  - 'cd ${DIR_CACHE} && tar xvf "./redpen-${REDPEN_VERSION}.tar.gz" && cd -'
