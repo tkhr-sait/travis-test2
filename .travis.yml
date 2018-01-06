@@ -15,7 +15,7 @@ before_install:
 
 install:
   # auto generate changelog
-  - 'whereis conventional-changelog-cli'
+  - 'echo npm install -g conventional-changelog-cli'
   # document inspector
   #  - 'curl --request GET --location --continue-at - --create-dirs --output "${DIR_CACHE}/redpen-${REDPEN_VERSION}.tar.gz" "${REDPEN_URL}/redpen-${REDPEN_VERSION}/redpen-${REDPEN_VERSION}.tar.gz"'
   #  - 'cd ${DIR_CACHE} && tar xvf "./redpen-${REDPEN_VERSION}.tar.gz" && cd -'
@@ -35,7 +35,8 @@ before_script:
   - 'echo "TRAVIS_TAG          = ${TRAVIS_TAG}"'
 
 script:
-#  - '"./build/ci_event/${EVENT}.sh"'
+  #  - '"./build/ci_event/${EVENT}.sh"'
+  - 'echo "EVENT               = ${EVENT}"'
 
 cache:
   directories:
