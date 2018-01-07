@@ -3,6 +3,17 @@ language: ruby
 rvm:
   - 2.2
 
+notifications:
+  webhooks:
+    urls:
+      - https://hooks.zapier.com/hooks/catch$WEBHOOKS
+    # options: [always|never|change]
+    on_start: never
+    on_success: always
+    on_failure: always
+    on_cancel: always
+    on_error: always
+
 addons:
   apt:
     packages:
