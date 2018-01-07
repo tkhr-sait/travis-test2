@@ -4,6 +4,8 @@ rvm:
 notifications:
   webhooks:
     urls:
+      # 以下のコマンドで暗号化する
+      # travis encrypt 'https://hooks.zapier.com/hooks/catch/xxxxx/xxxx' --add notifications.webhooks.urls
       secure: XA1MjSbnfvo4036/PJPG6V4P7M6IVpZz016IhzXLybQTVnFhMMqAofhbQdCrdtfVQlS7IPUm0lcel4a9F9yL+nJNiRhWY9MJXbgtZF5jNG0QjjWvhPnLi/4Q6hRglmIa11reHKwMq0k0c6ehdLsNEpsC6NVV0EUdy7CRj64HqVycKEtFnnrH3ldP1rrQRj1NuZfDoOVbvte0xnamBB9pB2spufSFWEH9jdn0ZXDlMsdh8S6RkACBLRYGXOjA/KL0rPvIxTnbPhHYXCGuNoPilgYdDc18yjm7wNe94cJzBTU415iX+815yrfJokxAAJWnI4lUXHANjAzHqaBy2fk97uk786KfFYpDCb1yVJ1koIURNsiMPBoqwF1dw9EIre7BqLYGIC3k+RGkV3YdqYLEFQvrvkbdbskitnzTlvXBlpCDBWnBMLUN8gb5cpMJzq7sEd8sJpiHruTJxpj0+6n9Ya/LIAsksROlsmIKzoNVh7SzOt5YeJTszb4MnHB+OrGC4RODZfnQTziawpxULPMXQyCvxN4IYp/H4s6xf+7ris8xynSA6FCPhgkf4s6Se5eZWUtI1i9wY+s1dU0E3Lj1FRbYUzzdNGtxGWA9P6z//lL9K6q5aNIX/RnNEFpFn9e2Y2s1MkeyOMV/KSqG5OeprnaAgyOjyWilSBDstUyO3qk=
     on_start: never
     on_success: always
