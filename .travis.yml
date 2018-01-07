@@ -1,72 +1,14 @@
 language: ruby
-
 rvm:
-  - 2.2
-
+- 2.2
 notifications:
   webhooks:
     urls:
-      - https://hooks.zapier.com/hooks/catch$WEBHOOKS
-    # options: [always|never|change]
+      secure: XA1MjSbnfvo4036/PJPG6V4P7M6IVpZz016IhzXLybQTVnFhMMqAofhbQdCrdtfVQlS7IPUm0lcel4a9F9yL+nJNiRhWY9MJXbgtZF5jNG0QjjWvhPnLi/4Q6hRglmIa11reHKwMq0k0c6ehdLsNEpsC6NVV0EUdy7CRj64HqVycKEtFnnrH3ldP1rrQRj1NuZfDoOVbvte0xnamBB9pB2spufSFWEH9jdn0ZXDlMsdh8S6RkACBLRYGXOjA/KL0rPvIxTnbPhHYXCGuNoPilgYdDc18yjm7wNe94cJzBTU415iX+815yrfJokxAAJWnI4lUXHANjAzHqaBy2fk97uk786KfFYpDCb1yVJ1koIURNsiMPBoqwF1dw9EIre7BqLYGIC3k+RGkV3YdqYLEFQvrvkbdbskitnzTlvXBlpCDBWnBMLUN8gb5cpMJzq7sEd8sJpiHruTJxpj0+6n9Ya/LIAsksROlsmIKzoNVh7SzOt5YeJTszb4MnHB+OrGC4RODZfnQTziawpxULPMXQyCvxN4IYp/H4s6xf+7ris8xynSA6FCPhgkf4s6Se5eZWUtI1i9wY+s1dU0E3Lj1FRbYUzzdNGtxGWA9P6z//lL9K6q5aNIX/RnNEFpFn9e2Y2s1MkeyOMV/KSqG5OeprnaAgyOjyWilSBDstUyO3qk=
     on_start: never
     on_success: always
     on_failure: always
     on_cancel: always
     on_error: always
-
-addons:
-  apt:
-    packages:
-      - caca-utils # img2txt
-
-before_install:
-  - 'DIR_CACHE="${HOME}/custom_cache"'
-  - 'REDPEN_URL="https://github.com/redpen-cc/redpen/releases/download"'
-  - 'REDPEN_VERSION="1.10.1"'
-
-install:
-  # auto generate changelog
-  - 'echo npm install -g conventional-changelog-cli'
-  # document inspector
-  #  - 'curl --request GET --location --continue-at - --create-dirs --output "${DIR_CACHE}/redpen-${REDPEN_VERSION}.tar.gz" "${REDPEN_URL}/redpen-${REDPEN_VERSION}/redpen-${REDPEN_VERSION}.tar.gz"'
-  #  - 'cd ${DIR_CACHE} && tar xvf "./redpen-${REDPEN_VERSION}.tar.gz" && cd -'
-  #  - 'export PATH="$PATH:${DIR_CACHE}/redpen-distribution-${REDPEN_VERSION}/bin"'
-  #  - 'gem install asciidoctor'
-
-before_script:
-  # CI Event判定
-  - EVENT="other"
-  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]        && [ "${TRAVIS_TAG}" == "" ] && EVENT="pr_created"    || EVENT="${EVENT}"'
-  - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]        && [ "${TRAVIS_TAG}" == "" ] && EVENT="pr_merged"     || EVENT="${EVENT}"'
-  - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]        && [ "${TRAVIS_TAG}" == "" ] && EVENT="master_pushed" || EVENT="${EVENT}"'
-  - '[ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "${TRAVIS_TAG}" ] && [ "${TRAVIS_TAG}" != "" ] && EVENT="tag_pushed"    || EVENT="${EVENT}"'
-  - 'echo "EVENT               = ${EVENT}"'
-  - 'echo "TRAVIS_BRANCH       = ${TRAVIS_BRANCH}"'
-  - 'echo "TRAVIS_PULL_REQUEST = ${TRAVIS_PULL_REQUEST}"'
-  - 'echo "TRAVIS_TAG          = ${TRAVIS_TAG}"'
-
 script:
-  #  - '"./build/ci_event/${EVENT}.sh"'
-  - 'echo "EVENT               = ${EVENT}"'
-
-cache:
-  directories:
-    - ${HOME}/.cache
-    - ${DIR_CACHE}
-
-after_success:
-  - 'echo "after_success"'
-  - 'echo "${EVENT} SUCCESS"'
-
-after_failure:
-  - 'echo "after_failure"'
-  - 'echo "${EVENT} FAILURE"'
-
-after_script:
-  - 'echo "after_script"'
-  - 'echo "EVENT               = ${EVENT}"'
-  - 'echo "TRAVIS_BRANCH       = ${TRAVIS_BRANCH}"'
-  - 'echo "TRAVIS_PULL_REQUEST = ${TRAVIS_PULL_REQUEST}"'
-  - 'echo "TRAVIS_TAG          = ${TRAVIS_TAG}"'
-  - 'echo "TRAVIS_TEST_RESULT  = ${TRAVIS_TEST_RESULT}"'
-
+- echo "script"
